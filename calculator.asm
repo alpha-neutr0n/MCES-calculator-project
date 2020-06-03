@@ -70,6 +70,7 @@ while(1)
 			 while(!(U0LSR & 0x20));
 			 U0THR = name[i];
 			}
+		 serialPrintStr("\n");
 		}
 	}
 }
