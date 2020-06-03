@@ -16,56 +16,63 @@ while(!(U0LSR & 0x01));
 a = U0RBR;
 while(!(U0LSR & 0x20));
 U0THR = a;
-
 while(!(U0LSR & 0x01));
 b = U0RBR;
 while(!(U0LSR & 0x20));
 U0THR = b;
-
 while(!(U0LSR & 0x01));
 c = U0RBR;
 while(!(U0LSR & 0x20));
 U0THR = c;
-
+serialPrintStr("\n");
 if(b=='+')
 {
-   res=(a+c)-0x30;
+   //res=(a+c)-0x30;
+	serialPrintStr("Result\n");
+	sprintf((char *)msg,"%c+%c=%d\x0d\xa",a,c,(a-0x30)+(c-0x30));
+	serialPrintStr((char*)msg);
+	continue;
 }
 else if(b=='-')
 {
-   res=(a-c)+0x30;
+  serialPrintStr("Result\n");
+	sprintf((char *)msg,"%c-%c=%d\x0d\xa",a,c,(a-0x30)-(c-0x30));
+	serialPrintStr((char*)msg);
+	continue;
 }
-
 else if(b=='*')
 {
    //res=((a-0x30)*(c-0x30))+0x30;
+	serialPrintStr("Result\n");
 	sprintf((char *)msg,"%c*%c=%d\x0d\xa",a,c,(a-0x30)*(c-0x30));
-	serialPrintStr("\n");
 	serialPrintStr((char*)msg);	
 	continue;
 }
 else if(b=='/')
 {
-   res=((a-0x30)/(c-0x30))+0x30;
+  serialPrintStr("Result\n");
+	sprintf((char *)msg,"%c/%c=%d\x0d\xa",a,c,(a-0x30)/(c-0x30));
+	serialPrintStr((char*)msg);
+	continue;
 }
 
-else
-{
- for(i=0;i<12;i++)
- { 
-   while(!(U0LSR & 0x20));
-   U0THR = name[i];
-}
-}
+//else
+//{
+// for(i=0;i<12;i++)
+// { 
+//   while(!(U0LSR & 0x20));
+//   U0THR = name[i];
+//}
+//}
 
-while(!(U0LSR & 0x01));
-s = U0RBR;
-while(!(U0LSR & 0x20));
-U0THR = s;
-serialPrintStr("Result\n");
-while(!(U0LSR & 0x20));
-U0THR = res;
-serialPrintStr("\n");
+//while(!(U0LSR & 0x01));
+//s = U0RBR;
+//while(!(U0LSR & 0x20));
+//U0THR = s;
+//serialPrintStr("Result\n");
+//while(!(U0LSR & 0x20));
+//U0THR = res;
+//serialPrintStr("\n");
 }
 }
 
