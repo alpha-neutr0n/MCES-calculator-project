@@ -1,3 +1,10 @@
+//This code only will work for arithemetic operations on 2-Digit Numbers
+//Input format eaxmple
+//04+45 for addition
+//56-43 for subtraction (first number > second number)
+//45*03 for multiplication
+//34/21 for division
+
 #include<LPC214x.h>
 #include <stdio.h>
 void delay(void);
