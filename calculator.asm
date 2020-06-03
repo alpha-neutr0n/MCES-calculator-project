@@ -29,14 +29,14 @@ if(b=='+')
 {
    //res=(a+c)-0x30;
 	serialPrintStr("Result\n");
-	sprintf((char *)msg,"%c+%c=%d\x0d\xa",a,c,(a-0x30)+(c-0x30));
+	sprintf((char *)msg,"%c+%c=%d\x0d\xa\n",a,c,(a-0x30)+(c-0x30));
 	serialPrintStr((char*)msg);
 	continue;
 }
 else if(b=='-')
 {
   serialPrintStr("Result\n");
-	sprintf((char *)msg,"%c-%c=%d\x0d\xa",a,c,(a-0x30)-(c-0x30));
+	sprintf((char *)msg,"%c-%c=%d\x0d\xa\n",a,c,(a-0x30)-(c-0x30));
 	serialPrintStr((char*)msg);
 	continue;
 }
@@ -44,26 +44,26 @@ else if(b=='*')
 {
    //res=((a-0x30)*(c-0x30))+0x30;
 	serialPrintStr("Result\n");
-	sprintf((char *)msg,"%c*%c=%d\x0d\xa",a,c,(a-0x30)*(c-0x30));
+	sprintf((char *)msg,"%c*%c=%d\x0d\xa\n",a,c,(a-0x30)*(c-0x30));
 	serialPrintStr((char*)msg);	
 	continue;
 }
 else if(b=='/')
 {
   serialPrintStr("Result\n");
-	sprintf((char *)msg,"%c/%c=%d\x0d\xa",a,c,(a-0x30)/(c-0x30));
+	sprintf((char *)msg,"%c/%c=%d\x0d\xa\n",a,c,(a-0x30)/(c-0x30));
 	serialPrintStr((char*)msg);
 	continue;
 }
 
-//else
-//{
-// for(i=0;i<12;i++)
-// { 
-//   while(!(U0LSR & 0x20));
-//   U0THR = name[i];
-//}
-//}
+else
+{
+ for(i=0;i<12;i++)
+ { 
+   while(!(U0LSR & 0x20));
+   U0THR = name[i];
+}
+}
 
 //while(!(U0LSR & 0x01));
 //s = U0RBR;
@@ -99,3 +99,4 @@ void delay()
 unsigned int i;
 for(i=0;i<10000;i++);
 }
+
